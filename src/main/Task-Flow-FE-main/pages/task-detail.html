@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chi tiết công việc</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="../assets/images/favicon/favicon-96x96.png">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/task-detail.css">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header fixed">
+        <div class="main-content">
+            <div class="body">
+                <!-- Brand -->
+                <div class="brand">
+                    <span class="brand-name">TaskFlow</span>
+                </div>
+
+                <!-- Navigation và User Profile -->
+                <div class="header-right">
+                    <nav class="nav">
+                        <ul>
+                            <li><a href="home.html" class="nav-link">
+                                <i class="fas fa-home"></i>
+                                <span>Home</span>
+                            </a></li>
+                            <li><a href="manager.html" class="nav-link active">
+                                <i class="fas fa-tasks"></i>
+                                <span>Manager</span>
+                            </a></li>
+                        </ul>
+                    </nav>
+                    
+                    <div class="user-profile">
+                        <div class="user-info">
+                            <span class="user-name" id="userName">User Name</span>
+                            <span class="user-role" id="userRole">Role</span>
+                        </div>
+                        <div class="user-avatar">
+                            <i class="fas fa-user-circle"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="main-container">
+        <div class="task-detail-container">
+            <div class="task-detail-card">
+                <h2>Chi tiết công việc</h2>
+                <!-- Task Info -->
+                <div class="task-info">
+                    <div class="info-group">
+                        <label>Tiêu đề:</label>
+                        <div id="taskTitle" class="info-content"></div>
+                    </div>
+                    <div class="info-group">
+                        <label>Mô tả:</label>
+                        <div id="taskDescription" class="info-content"></div>
+                    </div>
+                    <div class="info-group">
+                        <label>Ngày hết hạn:</label>
+                        <div id="taskDueDate" class="info-content"></div>
+                    </div>
+                    <div class="info-group">
+                        <label>Độ ưu tiên:</label>
+                        <div id="taskPriority" class="info-content"></div>
+                    </div>
+                    <div class="info-group">
+                        <label>Trạng thái:</label>
+                        <div id="taskStatus" class="info-content"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="task-actions">
+                <button class="back-btn" id="backButton">
+                    <i class="fas fa-arrow-left"></i>
+                    <span>Quay lại</span>
+                </button>
+                <button class="edit-btn" id="editButton">
+                    <i class="fas fa-edit"></i>
+                    <span>Chỉnh sửa</span>
+                </button>
+            </div>
+
+            <!-- Comments Section -->
+            <div class="comments-container">
+                <h3>Bình luận</h3>
+                <div class="comments-list" id="commentsList">
+                    <!-- Comments will be loaded here -->
+                </div>
+                <div class="comment-form">
+                    <textarea id="commentInput" placeholder="Nhập bình luận của bạn..."></textarea>
+                    <button class="submit-comment-btn" id="submitComment">
+                        <i class="fas fa-paper-plane"></i>
+                        <span>Gửi</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Chưa dùng -->
+            <!-- <div class="comment-item">
+                <div class="comment-header">
+                    <div class="comment-author">
+                        <div class="comment-author-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <span class="comment-author-name">Người dùng</span>
+                    </div>
+                    <span class="comment-date">1 giờ trước</span>
+                </div>
+                <div class="comment-content">
+                    Nội dung bình luận ở đây...
+                </div>
+            </div> -->
+        </div>
+    </div>
+
+    <!-- Edit Modal -->
+    <div id="editModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Chỉnh sửa công việc</h2>
+            <form id="editForm">
+                <div class="form-group">
+                    <label for="editTitle">Tiêu đề:</label>
+                    <input type="text" id="editTitle" required>
+                </div>
+                <div class="form-group">
+                    <label for="editDescription">Mô tả:</label>
+                    <textarea id="editDescription" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="editDueDate">Ngày hết hạn:</label>
+                    <input type="date" id="editDueDate" required>
+                </div>
+                <div class="form-group">
+                    <label for="editPriority">Độ ưu tiên:</label>
+                    <select id="editPriority" required>
+                        <option value="0">Thấp</option>
+                        <option value="1">Trung bình</option>
+                        <option value="2">Cao</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="editStatus">Trạng thái:</label>
+                    <select id="editStatus" required>
+                        <option value="0">Đang thực hiện</option>
+                        <option value="1">Hoàn thành</option>
+                    </select>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="save-btn">
+                        <i class="fas fa-save"></i>
+                        <span>Lưu</span>
+                    </button>
+                    <button type="button" class="cancel-btn" onclick="closeEditModal()">
+                        <i class="fas fa-times"></i>
+                        <span>Hủy</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Notification Container -->
+    <div id="notificationContainer" class="notification-container"></div>
+
+    <!-- JavaScript -->
+    <script src="../js/task-detail.js"></script>
+</body>
+</html>
